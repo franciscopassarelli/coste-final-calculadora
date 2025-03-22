@@ -30,12 +30,12 @@ const CostSummary: React.FC<CostSummaryProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-secondary/50 rounded-lg p-4 border border-border">
                 <div className="calculator-label">Precio Base</div>
-                <div className="calculator-result truncate">{formatCurrency(basePrice)}</div>
+                <div className="calculator-result break-words">{formatCurrency(basePrice)}</div>
               </div>
               
               <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
                 <div className="calculator-label">Costo Final</div>
-                <div className="calculator-result text-primary truncate">{formatCurrency(totalCost)}</div>
+                <div className="calculator-result text-primary break-words">{formatCurrency(totalCost)}</div>
               </div>
             </div>
             
@@ -46,35 +46,35 @@ const CostSummary: React.FC<CostSummaryProps> = ({
                 {costBreakdown.iva.enabled && (
                   <div className="flex justify-between items-center rounded-md p-2 hover:bg-secondary/30 transition-colors">
                     <span className="text-sm font-medium">IVA ({costBreakdown.iva.rate}%)</span>
-                    <span className="font-medium truncate ml-2">{formatCurrency(basePrice * (costBreakdown.iva.rate / 100))}</span>
+                    <span className="font-medium break-words ml-2">{formatCurrency(basePrice * (costBreakdown.iva.rate / 100))}</span>
                   </div>
                 )}
                 
                 {costBreakdown.provincialTaxes.enabled && (
                   <div className="flex justify-between items-center rounded-md p-2 hover:bg-secondary/30 transition-colors">
                     <span className="text-sm font-medium">Impuestos Provinciales ({costBreakdown.provincialTaxes.rate}%)</span>
-                    <span className="font-medium truncate ml-2">{formatCurrency(basePrice * (costBreakdown.provincialTaxes.rate / 100))}</span>
+                    <span className="font-medium break-words ml-2">{formatCurrency(basePrice * (costBreakdown.provincialTaxes.rate / 100))}</span>
                   </div>
                 )}
                 
                 {costBreakdown.shipping.enabled && (
                   <div className="flex justify-between items-center rounded-md p-2 hover:bg-secondary/30 transition-colors">
                     <span className="text-sm font-medium">Costo de Envío</span>
-                    <span className="font-medium truncate ml-2">{formatCurrency(costBreakdown.shipping.cost)}</span>
+                    <span className="font-medium break-words ml-2">{formatCurrency(costBreakdown.shipping.cost)}</span>
                   </div>
                 )}
                 
                 {costBreakdown.monotributo.enabled && (
                   <div className="flex justify-between items-center rounded-md p-2 hover:bg-secondary/30 transition-colors">
                     <span className="text-sm font-medium">Monotributo {costBreakdown.monotributo.category} ({costBreakdown.monotributo.rate}%)</span>
-                    <span className="font-medium truncate ml-2">{formatCurrency(basePrice * (costBreakdown.monotributo.rate / 100))}</span>
+                    <span className="font-medium break-words ml-2">{formatCurrency(basePrice * (costBreakdown.monotributo.rate / 100))}</span>
                   </div>
                 )}
                 
                 {costBreakdown.storeExpenses.enabled && (
                   <div className="flex justify-between items-center rounded-md p-2 hover:bg-secondary/30 transition-colors">
                     <span className="text-sm font-medium">Gastos de Tienda</span>
-                    <span className="font-medium truncate ml-2">{formatCurrency(
+                    <span className="font-medium break-words ml-2">{formatCurrency(
                       (basePrice * (costBreakdown.storeExpenses.salesCommission / 100)) + 
                       (costBreakdown.storeExpenses.monthlyFee / 100) + 
                       costBreakdown.storeExpenses.serviceFee
@@ -85,7 +85,7 @@ const CostSummary: React.FC<CostSummaryProps> = ({
                 {costBreakdown.paymentProcessing.enabled && (
                   <div className="flex justify-between items-center rounded-md p-2 hover:bg-secondary/30 transition-colors">
                     <span className="text-sm font-medium">Procesamiento de Pagos</span>
-                    <span className="font-medium truncate ml-2">{formatCurrency(
+                    <span className="font-medium break-words ml-2">{formatCurrency(
                       (basePrice * (costBreakdown.paymentProcessing.posnetFee / 100)) +
                       (basePrice * (costBreakdown.paymentProcessing.bankCardFee / 100)) +
                       costBreakdown.paymentProcessing.withdrawalFee
@@ -101,7 +101,7 @@ const CostSummary: React.FC<CostSummaryProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-secondary/50 rounded-lg p-4 border border-border">
                   <div className="calculator-label">Precio de Venta Sugerido</div>
-                  <div className="calculator-result truncate">{formatCurrency(sellingPrice)}</div>
+                  <div className="calculator-result break-words">{formatCurrency(sellingPrice)}</div>
                 </div>
                 
                 <div className={`rounded-lg p-4 border ${
@@ -110,7 +110,7 @@ const CostSummary: React.FC<CostSummaryProps> = ({
                   'bg-red-50 border-red-200'
                 }`}>
                   <div className="calculator-label">Margen de Ganancia</div>
-                  <div className={`calculator-result truncate ${
+                  <div className={`calculator-result break-words ${
                     profitMargin >= 20 ? 'text-green-600' : 
                     profitMargin >= 10 ? 'text-amber-600' : 
                     'text-red-600'

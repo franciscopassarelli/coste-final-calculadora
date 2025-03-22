@@ -1,8 +1,14 @@
 
-import React from 'react';
-import { Calculator } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calculator, Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  
   return (
     <header className="py-4 border-b border-border bg-white shadow-sm sticky top-0 z-50 animate-fade-in">
       <div className="container max-w-6xl mx-auto px-4">
@@ -32,12 +38,50 @@ const Header: React.FC = () => {
           </nav>
           
           {/* Mobile menu button */}
-          <button className="block md:hidden p-2 text-foreground hover:text-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+          <button 
+            className="block md:hidden p-2 text-foreground hover:text-primary transition-colors" 
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+        
+        {/* Mobile menu */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-4 bg-white border border-border rounded-lg shadow-lg animate-slide-down">
+            <nav className="flex flex-col p-4">
+              <a 
+                href="#calculadora" 
+                className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Calculadora
+              </a>
+              <a 
+                href="#como-funciona" 
+                className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Cómo funciona
+              </a>
+              <a 
+                href="#sobre-nosotros" 
+                className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Sobre nosotros
+              </a>
+              <a 
+                href="#" 
+                className="mt-2 py-3 px-4 text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contacto
+              </a>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
