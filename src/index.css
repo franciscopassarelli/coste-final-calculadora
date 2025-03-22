@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -47,15 +48,22 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
 }
 
 @layer components {
   .calculator-input {
-    @apply text-2xl w-full h-14 bg-white border border-input rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200;
+    @apply text-2xl w-full h-14 bg-white border border-input rounded-lg px-4 
+      focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent 
+      transition-all duration-200 shadow-sm;
   }
   
   .calculator-section {
-    @apply bg-white rounded-xl shadow-sm border border-border p-6 transition-all duration-300 ease-in-out;
+    @apply bg-white rounded-xl border border-border p-6 transition-all 
+      duration-300 ease-in-out hover:shadow-md;
   }
   
   .calculator-label {
@@ -63,10 +71,33 @@
   }
   
   .section-title {
-    @apply text-lg font-semibold tracking-tight;
+    @apply text-lg font-semibold tracking-tight text-foreground;
   }
   
   .calculator-result {
     @apply text-3xl font-semibold font-display tracking-tight;
+  }
+  
+  .styled-scrollbar {
+    @apply scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent 
+      scrollbar-thumb-rounded-full;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thumb-primary\/20::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--primary) / 0.2);
+  }
+  
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .scrollbar-thumb-rounded-full::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
   }
 }

@@ -18,10 +18,14 @@ const CalculatorSection: React.FC<CalculatorSectionProps> = ({
   children
 }) => {
   return (
-    <div className={`calculator-section mb-6 ${enabled ? 'ring-1 ring-primary/10' : 'opacity-90'}`}>
+    <div className={`calculator-section transition-all duration-300 ${
+      enabled 
+        ? 'ring-2 ring-primary/10 shadow-md' 
+        : 'opacity-90 hover:opacity-100'
+    }`}>
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h3 className="section-title">{title}</h3>
+          <h3 className="section-title text-lg font-semibold tracking-tight">{title}</h3>
           <p className="text-sm text-muted-foreground mt-1">{description}</p>
         </div>
         <Switch
@@ -31,7 +35,11 @@ const CalculatorSection: React.FC<CalculatorSectionProps> = ({
         />
       </div>
       
-      <div className={`transition-all duration-300 ${enabled ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
+      <div className={`transition-all duration-300 ${
+        enabled 
+          ? 'opacity-100' 
+          : 'opacity-40 pointer-events-none'
+      }`}>
         {children}
       </div>
     </div>

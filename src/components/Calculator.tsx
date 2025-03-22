@@ -92,7 +92,7 @@ const Calculator: React.FC = () => {
     setCosts((prevCosts) => ({
       ...prevCosts,
       [section]: {
-        ...prevCosts[section],
+        ...prevCosts[section as keyof typeof prevCosts],
         enabled,
       },
     }));
@@ -102,7 +102,7 @@ const Calculator: React.FC = () => {
     setCosts((prevCosts) => ({
       ...prevCosts,
       [section]: {
-        ...prevCosts[section],
+        ...prevCosts[section as keyof typeof prevCosts],
         [field]: value,
       },
     }));
@@ -394,7 +394,7 @@ const Calculator: React.FC = () => {
         <div className="calculator-section sticky top-6">
           <h3 className="section-title mb-4">Precio de Venta</h3>
           
-          <div className="space-y-4">
+          <div className="space-y-4 mb-8">
             <div>
               <label htmlFor="sellingPrice" className="calculator-label block mb-2">
                 Precio de Venta Sugerido
