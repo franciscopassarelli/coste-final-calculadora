@@ -2,8 +2,11 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Calculator from '@/components/Calculator';
+import MonotributoSelect from '@/components/MonotributoSelect';
+
+
 import { ArrowDown, Calculator as CalculatorIcon, Sparkles } from 'lucide-react';
+import ProductPricingPage from '@/components/product-pricing-calculator-page';
 
 const Index = () => {
   return (
@@ -11,13 +14,13 @@ const Index = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Enhanced Hero Section with Logo and Visual Elements */}
+        {/* sección Hero + Home */}
         <section className="py-20 md:py-28 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1596005554384-d293674c91d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-cover opacity-5"></div>
           
           <div className="container max-w-6xl mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
-              {/* Logo and Brand Badge */}
+              {/* Logo y  Brand Badge */}
               <div className="flex items-center justify-center mb-8">
                 <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center shadow-lg">
                   <CalculatorIcon size={36} className="text-white" />
@@ -73,11 +76,13 @@ const Index = () => {
                 Determina el precio de venta ideal para tus productos considerando todos los impuestos,
                 comisiones y gastos, y haz que tu negocio sea rentable.
               </p>
-            </div>
+
+</div>
             
             <div className="rounded-2xl bg-white border border-border shadow-xl animate-slide-up">
+
               <div className="p-6 md:p-8">
-                <Calculator />
+                <ProductPricingPage />
               </div>
             </div>
           </div>
