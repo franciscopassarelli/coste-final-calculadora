@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -11,6 +13,7 @@ export default function ProductPricingPage() {
   const [selectedCategory, setSelectedCategory] = useState("Buenos Aires")
   const [grossSellingPrice, setGrossSellingPrice] = useState(0)
   const [profitMargin, setProfitMargin] = useState(30)
+  const [monotributoCategory, setMonotributoCategory] = useState("A")
 
   // Calculate gross selling price based on product cost and profit margin
   useEffect(() => {
@@ -23,7 +26,8 @@ export default function ProductPricingPage() {
   }, [productCost, profitMargin])
 
   return (
-    <div className="container mx-auto py-8 px-4">
+   <div className="container mx-auto py-8 px-4 flex flex-col gap-6">
+  <div className="bg-white p-6 rounded-lg shadow-md border">
       <ProductPricingCalculator
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -36,7 +40,17 @@ export default function ProductPricingPage() {
         grossSellingPrice={grossSellingPrice}
         profitMargin={profitMargin}
         setProfitMargin={setProfitMargin}
+        monotributoCategory={monotributoCategory}
+        setMonotributoCategory={setMonotributoCategory}
       />
+
+      </div>
+  <div className="max-w-3xl mx-auto text-center mt-12 animate-fade-in">
+       <h2 className="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-6">
+       Queres saber lo que realmente vas a recibir?
+       </h2>
+     </div>
+  <div className="bg-white p-6 rounded-lg shadow-md border">
 
       <ProductPricingResults
         productCost={productCost}
@@ -45,8 +59,9 @@ export default function ProductPricingPage() {
         grossSellingPrice={grossSellingPrice}
         profitMargin={profitMargin}
         activeTab={activeTab}
+        monotributoCategory={monotributoCategory}
       />
+    </div>
     </div>
   )
 }
-

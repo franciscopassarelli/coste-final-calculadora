@@ -72,7 +72,7 @@ export default function MonotributoSelect() {
               <SelectValue placeholder="Buenos Aires" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="buenos-aires">Buenos Aires</SelectItem>
+           
               <SelectItem value="comercio">Comercio</SelectItem>
               <SelectItem value="servicios">Servicios</SelectItem>
             </SelectContent>

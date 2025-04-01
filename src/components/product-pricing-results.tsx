@@ -11,6 +11,7 @@ interface ProductPricingResultsProps {
   grossSellingPrice?: number
   profitMargin?: number
   activeTab?: string
+  monotributoCategory?: string
 }
 
 export default function ProductPricingResults({
@@ -20,6 +21,7 @@ export default function ProductPricingResults({
   grossSellingPrice = 0,
   profitMargin = 30,
   activeTab = "responsable",
+  monotributoCategory = "A",
 }: ProductPricingResultsProps) {
   const [paymentService, setPaymentService] = useState("payway")
   const [taxesEnabled, setTaxesEnabled] = useState(false)
@@ -39,8 +41,25 @@ export default function ProductPricingResults({
     }
 
     // Apply taxes if enabled (assuming 21% VAT for Responsable Inscripto)
-    if (taxesEnabled && activeTab === "responsable") {
-      netPrice = netPrice / 1.21 // Remove 21% VAT
+    if (taxesEnabled) {
+      if (activeTab === "responsable") {
+        netPrice = netPrice / 1.21 // Remove 21% VAT
+      } else if (activeTab === "monotributo") {
+        // For monotributo, add the monthly fee divided by 30 days
+        const monotributoFees = {
+          A: 6000,
+          B: 11000,
+          C: 15000,
+          D: 24000,
+          E: 35000,
+          F: 48000,
+          G: 65000,
+          H: 90000,
+        }
+
+        const dailyFee = (monotributoFees[monotributoCategory as keyof typeof monotributoFees] || 6000) / 30
+        netPrice = netPrice - dailyFee
+      }
     }
 
     setNetSellingPrice(netPrice)
@@ -55,12 +74,11 @@ export default function ProductPricingResults({
 
     // Set comparison price (simplified)
     setCompareNetPrice(netPrice * 0.95) // Just an example - would vary by province
-  }, [grossSellingPrice, paymentService, taxesEnabled, activeTab, productCost])
+  }, [grossSellingPrice, paymentService, taxesEnabled, activeTab, productCost, monotributoCategory])
 
   return (
-    <div className="max-w-xl mx-auto mt-8">
-      <h1 className="text-2xl font-bold mb-6">Queres saber lo que realmente vas a recibir?</h1>
-
+    <div className="max-w-xl mx-auto">
+     
       <div className="bg-white rounded-xl shadow-sm p-6">
         {/* Tabs */}
         <div className="flex mb-8">
@@ -81,17 +99,20 @@ export default function ProductPricingResults({
         </div>
 
         {/* Results */}
-        <div className="space-y-8">
+        <div className="space-y-3">
           {/* Gross Selling Price */}
+          <div className="calculator-section space-y-6">
           <div className="space-y-1">
             <h3 className="font-medium">Precio de venta bruto</h3>
             <p className="text-sm text-gray-500">Tu precio con los datos de arriba</p>
             <div className="h-10 flex items-center">${grossSellingPrice.toFixed(2)}</div>
           </div>
+          </div>
 
           {/* Payment Service & Taxes (side by side) */}
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-1">
+            <div className="calculator-section space-y-2">
               <h3 className="font-medium">Servicio de pagos</h3>
               <p className="text-sm text-gray-500">Agrega un servicio de pago</p>
               <Select value={paymentService} onValueChange={setPaymentService}>
@@ -105,10 +126,16 @@ export default function ProductPricingResults({
                 </SelectContent>
               </Select>
             </div>
+            </div>
 
             <div className="space-y-1">
+            <div className="calculator-section">
               <h3 className="font-medium">Impuestos</h3>
-              <p className="text-sm text-gray-500">Agrega impuestos según tu situación fiscal (solo para ventas)</p>
+              <p className="text-sm text-gray-500">
+                {activeTab === "responsable"
+                  ? "Agrega impuestos según tu situación fiscal (solo para ventas)"
+                  : "Incluir costo diario de monotributo"}
+              </p>
               <div className="h-10 flex items-center justify-end">
                 <Checkbox
                   id="taxes"
@@ -116,24 +143,30 @@ export default function ProductPricingResults({
                   onCheckedChange={(checked) => setTaxesEnabled(checked === true)}
                 />
               </div>
+              </div>
             </div>
           </div>
 
           {/* Net Selling Price */}
           <div className="space-y-1">
+          <div className="calculator-section space-y-2">
             <h3 className="font-medium">Precio de venta neto</h3>
             <p className="text-sm text-gray-500">Lo que te queda en el bolsillo después de todos los descuentos</p>
             <div className="h-10 flex items-center font-medium">${netSellingPrice.toFixed(2)}</div>
           </div>
+          </div>
 
           {/* Profit Percentage */}
           <div className="text-center py-4">
+          <div className="calculator-section space-y-4">
             <p className="text-sm mb-2">Tu porcentaje de ganancia por venta final es:</p>
             <p className="text-2xl font-bold">{finalProfitPercentage}%</p>
           </div>
+          </div>
 
           {/* Compare Prices */}
-          <div className="space-y-4">
+          <div className="space-y-1">
+          <div className="calculator-section space-y-4">
             <h3 className="font-medium text-center">Compara tu precio entre provincias</h3>
 
             <div className="space-y-1">
@@ -155,9 +188,9 @@ export default function ProductPricingResults({
               <p className="text-2xl font-medium text-gray-500">${compareNetPrice.toFixed(2)}</p>
             </div>
           </div>
+          </div>
         </div>
       </div>
     </div>
   )
 }
-

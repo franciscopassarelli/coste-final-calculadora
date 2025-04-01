@@ -79,12 +79,11 @@ const Index = () => {
 
 </div>
             
-            <div className="rounded-2xl bg-white border border-border shadow-xl animate-slide-up">
 
               <div className="p-6 md:p-8">
                 <ProductPricingPage />
               </div>
-            </div>
+           
           </div>
         </section>
         
