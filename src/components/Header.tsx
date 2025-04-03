@@ -58,7 +58,7 @@ const Header: React.FC = () => {
                 Calculadora
               </a>
               <a 
-                href="/about" 
+                href="/about"
                 className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
