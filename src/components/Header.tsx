@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Calculator, Menu, X } from 'lucide-react';
 
@@ -27,10 +26,10 @@ const Header: React.FC = () => {
               Calculadora
             </a>
             <a href="#como-funciona" className="text-sm font-medium hover:text-primary transition-colors">
-              Cómo funciona
+              Servicios
             </a>
-            <a href="#sobre-nosotros" className="text-sm font-medium hover:text-primary transition-colors">
-              Sobre nosotros
+            <a href="/about" className="text-sm font-medium hover:text-primary transition-colors">
+              Quienes somos
             </a>
             <a href="#" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors px-4 py-2 rounded-full text-sm font-medium">
               Contacto
@@ -59,7 +58,7 @@ const Header: React.FC = () => {
                 Calculadora
               </a>
               <a 
-                href="#como-funciona" 
+                href="/about" 
                 className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
