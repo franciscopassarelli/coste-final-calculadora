@@ -30,17 +30,14 @@ const Header: React.FC = () => {
             </div>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#calculadora" className="text-sm font-medium hover:text-primary transition-colors">
-              Calculadora
-            </a>
-            <a href="/pagina" className="text-sm font-medium hover:text-primary transition-colors">
-              Servicios
-            </a>
+            <Link to="/calculadora" className="text-sm font-medium hover:text-primary transition-colors">
+              Calculadora </Link>
+            
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
               Cómo funciona </Link>
-            <a href="#" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors px-4 py-2 rounded-full text-sm font-medium">
+            <Link to="/contacto" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors px-4 py-2 rounded-full text-sm font-medium">
               Contacto
-            </a>
+            </Link>
           </nav>
           
           {/* Mobile menu button */}
