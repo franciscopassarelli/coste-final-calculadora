@@ -1,3 +1,5 @@
+"use client";
+import React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, BarChart3, Calculator, CreditCard, Users, Mail, Phone, MapPin } from "lucide-react";
