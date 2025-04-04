@@ -28,7 +28,7 @@ const Header: React.FC = () => {
             <a href="#como-funciona" className="text-sm font-medium hover:text-primary transition-colors">
               Servicios
             </a>
-            <a href="/about" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/About" className="text-sm font-medium hover:text-primary transition-colors">
               Quienes somos
             </a>
             <a href="#" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors px-4 py-2 rounded-full text-sm font-medium">
