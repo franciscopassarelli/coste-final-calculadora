@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { Calculator, Menu, X } from 'lucide-react';
-
+import { Link, useLocation } from 'react-router-dom';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const navLinks = [
+    { name: 'pagina', path: '/pagina', icon: <Calculator className="h-5 w-5" /> },
+    { name: 'Servicios', path: '/services', icon: <Calculator className="h-5 w-5" /> },
+    { name: 'About', path: '/about', icon: <Calculator className="h-5 w-5" /> },
+    { name: 'Contacto', path: '/contact', icon: <Calculator className="h-5 w-5" /> },
+  ];
+
   
   return (
     <header className="py-4 border-b border-border bg-white shadow-sm sticky top-0 z-50 animate-fade-in">
@@ -28,9 +36,8 @@ const Header: React.FC = () => {
             <a href="/pagina" className="text-sm font-medium hover:text-primary transition-colors">
               Servicios
             </a>
-            <a href="/about" className="text-sm font-medium hover:text-primary transition-colors">
-              Quienes somos
-            </a>
+            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
+              Cómo funciona </Link>
             <a href="#" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors px-4 py-2 rounded-full text-sm font-medium">
               Contacto
             </a>
