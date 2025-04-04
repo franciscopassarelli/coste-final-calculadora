@@ -25,7 +25,7 @@ const Header: React.FC = () => {
             <a href="#calculadora" className="text-sm font-medium hover:text-primary transition-colors">
               Calculadora
             </a>
-            <a href="#como-funciona" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="" className="text-sm font-medium hover:text-primary transition-colors">
               Servicios
             </a>
             <a href="/about" className="text-sm font-medium hover:text-primary transition-colors">

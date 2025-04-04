@@ -34,7 +34,7 @@ const About = () => {
               Somos una consultora especializada en ayudar a emprendedores y PyMEs a optimizar sus operaciones y maximizar su rentabilidad a través de soluciones personalizadas.
             </p>
           </div>
-             <section className="py-16 bg-secondary/50 relative overflow-hidden" id="sobre-nosotros">
+             <section className="py-16 bg-secondary/50 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/20"></div>
 
           <div className="container max-w-6xl mx-auto px-4 relative z-10">
