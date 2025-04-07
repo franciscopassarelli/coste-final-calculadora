@@ -176,10 +176,32 @@ export default function ProductPricingResults({
                   <SelectValue placeholder="Seleccionar provincia" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="buenos-aires">Buenos Aires</SelectItem>
-                  <SelectItem value="cordoba">Córdoba</SelectItem>
-                  <SelectItem value="santa-fe">Santa Fe</SelectItem>
-                </SelectContent>
+  <SelectItem value="caba">Ciudad Autónoma de Buenos Aires (CABA)</SelectItem>
+  <SelectItem value="buenos-aires">Buenos Aires</SelectItem>
+  <SelectItem value="catamarca">Catamarca</SelectItem>
+  <SelectItem value="chaco">Chaco</SelectItem>
+  <SelectItem value="chubut">Chubut</SelectItem>
+  <SelectItem value="cordoba">Córdoba</SelectItem>
+  <SelectItem value="corrientes">Corrientes</SelectItem>
+  <SelectItem value="entre-rios">Entre Ríos</SelectItem>
+  <SelectItem value="formosa">Formosa</SelectItem>
+  <SelectItem value="jujuy">Jujuy</SelectItem>
+  <SelectItem value="la-pampa">La Pampa</SelectItem>
+  <SelectItem value="la-rioja">La Rioja</SelectItem>
+  <SelectItem value="mendoza">Mendoza</SelectItem>
+  <SelectItem value="misiones">Misiones</SelectItem>
+  <SelectItem value="neuquen">Neuquén</SelectItem>
+  <SelectItem value="rio-negro">Río Negro</SelectItem>
+  <SelectItem value="salta">Salta</SelectItem>
+  <SelectItem value="san-juan">San Juan</SelectItem>
+  <SelectItem value="san-luis">San Luis</SelectItem>
+  <SelectItem value="santa-cruz">Santa Cruz</SelectItem>
+  <SelectItem value="santa-fe">Santa Fe</SelectItem>
+  <SelectItem value="santiago-del-estero">Santiago del Estero</SelectItem>
+  <SelectItem value="tierra-del-fuego">Tierra del Fuego</SelectItem>
+  <SelectItem value="tucuman">Tucumán</SelectItem>
+</SelectContent>
+
               </Select>
             </div>
 
