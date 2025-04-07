@@ -9,10 +9,11 @@ const Header: React.FC = () => {
   };
 
   const navLinks = [
-    { name: 'pagina', path: '/pagina', icon: <Calculator className="h-5 w-5" /> },
-    { name: 'Servicios', path: '/services', icon: <Calculator className="h-5 w-5" /> },
+   
+    { name: 'Servicios', path: '/', icon: <Calculator className="h-5 w-5" /> },
     { name: 'About', path: '/about', icon: <Calculator className="h-5 w-5" /> },
     { name: 'Contacto', path: '/contact', icon: <Calculator className="h-5 w-5" /> },
+    
   ];
 
   
@@ -30,11 +31,11 @@ const Header: React.FC = () => {
             </div>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/calculadora" className="text-sm font-medium hover:text-primary transition-colors">
-              Calculadora </Link>
-            
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+              Servicios
+            </Link>
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
-              Cómo funciona </Link>
+              Quienes Somos</Link>
             <Link to="/contacto" className="bg-primary/10 text-primary hover:bg-primary/20 transition-colors px-4 py-2 rounded-full text-sm font-medium">
               Contacto
             </Link>
@@ -54,34 +55,32 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 bg-white border border-border rounded-lg shadow-lg animate-slide-down">
             <nav className="flex flex-col p-4">
-              <a 
-                href="#calculadora" 
+              <Link
+                to="/#calculadora" 
                 className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Calculadora
-              </a>
-              <a 
-                href="/about"
+              </Link>
+              <Link 
+                to="/about"
                 className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
-              >
-                Cómo funciona
-              </a>
-              <a 
-                href="#sobre-nosotros" 
+              >Quienes Somos</Link>
+              <Link
+                to="/#sobre-nosotros"
                 className="py-3 px-4 text-sm font-medium hover:bg-primary/5 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sobre nosotros
-              </a>
-              <a 
-                href="#" 
+              </Link>
+              <Link
+                to="/#contacto"
                 className="mt-2 py-3 px-4 text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contacto
-              </a>
+              </Link>
             </nav>
           </div>
         )}
