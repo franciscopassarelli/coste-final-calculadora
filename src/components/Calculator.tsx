@@ -15,6 +15,35 @@ import { Button } from '@/components/ui/button';
 
 const DEFAULT_PROFIT_MARGIN = 30; // 30% default profit margin
 
+
+const provincialRates: { [key: string]: number } = {
+  "Ciudad Autónoma de Buenos Aires (CABA)": 2.0,
+  "Buenos Aires": 2.0,
+  "Catamarca": 0,
+  "Chaco": 5.5,
+  "Chubut": 0,
+  "Corrientes": 0,
+  "Córdoba": 3,
+  "Entre Ríos": 0,
+  "Formosa": 0,
+  "Jujuy": 0,
+  "La Pampa": 1,
+  "La Rioja": 0,
+  "Mendoza": 0,
+  "Misiones": 2.5,
+  "Neuquén": 4.0,
+  "Río Negro": 5.0,
+  "San Juan": 0,
+  "San Luis": 0,
+  "Salta": 3.6,
+  "Santa Cruz": 0,
+  "Santa Fe": 4.5,
+  "Santiago del Estero": 0,
+  "Tierra del Fuego": 3.0,
+  "Tucumán": 0,
+};
+
+
 const Calculator: React.FC = () => {
   const [basePrice, setBasePrice] = useState<number>(0);
   const [costs, setCosts] = useState<CostInput>({
@@ -163,6 +192,34 @@ const Calculator: React.FC = () => {
                 value={basePrice || ''}
                 onChange={handleBasePriceChange}
               />
+<div>
+  <label className="calculator-label block mb-2">Provincia</label>
+  <Select
+    onValueChange={(provincia) => {
+      const porcentaje = provincialRates[provincia] || 0;
+      setCosts((prev) => ({
+        ...prev,
+        provincialTaxes: {
+          ...prev.provincialTaxes,
+          enabled: true,
+          rate: porcentaje,
+        },
+      }));
+    }}
+  >
+    <SelectTrigger className="w-full">
+      <SelectValue placeholder="Seleccioná una provincia" />
+    </SelectTrigger>
+    <SelectContent>
+      {Object.entries(provincialRates).map(([provincia, porcentaje]) => (
+        <SelectItem key={provincia} value={provincia}>
+          {provincia} ({porcentaje}%)
+        </SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+</div>
+
             </div>
           </div>
         </div>

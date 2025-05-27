@@ -3,6 +3,8 @@
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
+import { useState } from "react"
+
 
 interface ProductPricingCalculatorProps {
   activeTab: string
@@ -18,6 +20,8 @@ interface ProductPricingCalculatorProps {
   setProfitMargin: (margin: number) => void
   monotributoCategory: string
   setMonotributoCategory: (category: string) => void
+  monotributoActivo: boolean
+  setMonotributoActivo: (value: boolean) => void;
 }
 
 export default function ProductPricingCalculator({
@@ -34,6 +38,9 @@ export default function ProductPricingCalculator({
   setProfitMargin,
   monotributoCategory,
   setMonotributoCategory,
+  monotributoActivo,
+  setMonotributoActivo,
+  
 }: ProductPricingCalculatorProps) {
   return (
     <div className="mx-auto p-6 bg-white rounded-xl shadow-sm">
@@ -54,6 +61,13 @@ export default function ProductPricingCalculator({
           onClick={() => setActiveTab("monotributo")}
         >
           Monotributo
+          {activeTab === "monotributo" && (
+
+            
+  <div className="mb-4">
+    
+  </div>
+)}
         </button>
       </div>
 
@@ -79,36 +93,38 @@ export default function ProductPricingCalculator({
         <div className="space-y-2">
         <div className="calculator-section space-y-4">
           <label className="block text-lg font-medium">Provincia</label>
-          <p className="text-sm text-gray-500">Selecciona tu provincia</p>
+          <p className="text-sm text-gray-500">
+  Según tu provincia de facturación se aplican diferentes tasas de Ingresos Brutos (IIBB) o IVA. Estos pueden variar entre 0% y 5.5%. Tierra del Fuego está exenta de IVA.
+</p>
           <Select value={selectedProvince} onValueChange={setSelectedProvince}>
             <SelectTrigger className="w-full border-gray-300">
               <SelectValue placeholder="Buenos Aires" />
             </SelectTrigger>
             <SelectContent>
-  <SelectItem value="caba">Ciudad Autónoma de Buenos Aires (CABA)</SelectItem>
-  <SelectItem value="buenos-aires">Buenos Aires</SelectItem>
-  <SelectItem value="catamarca">Catamarca</SelectItem>
-  <SelectItem value="chaco">Chaco</SelectItem>
-  <SelectItem value="chubut">Chubut</SelectItem>
-  <SelectItem value="cordoba">Córdoba</SelectItem>
-  <SelectItem value="corrientes">Corrientes</SelectItem>
-  <SelectItem value="entre-rios">Entre Ríos</SelectItem>
-  <SelectItem value="formosa">Formosa</SelectItem>
-  <SelectItem value="jujuy">Jujuy</SelectItem>
-  <SelectItem value="la-pampa">La Pampa</SelectItem>
-  <SelectItem value="la-rioja">La Rioja</SelectItem>
-  <SelectItem value="mendoza">Mendoza</SelectItem>
-  <SelectItem value="misiones">Misiones</SelectItem>
-  <SelectItem value="neuquen">Neuquén</SelectItem>
-  <SelectItem value="rio-negro">Río Negro</SelectItem>
-  <SelectItem value="salta">Salta</SelectItem>
-  <SelectItem value="san-juan">San Juan</SelectItem>
-  <SelectItem value="san-luis">San Luis</SelectItem>
-  <SelectItem value="santa-cruz">Santa Cruz</SelectItem>
-  <SelectItem value="santa-fe">Santa Fe</SelectItem>
-  <SelectItem value="santiago-del-estero">Santiago del Estero</SelectItem>
-  <SelectItem value="tierra-del-fuego">Tierra del Fuego</SelectItem>
-  <SelectItem value="tucuman">Tucumán</SelectItem>
+  <SelectItem value="Caba">CABA</SelectItem>
+  <SelectItem value="Buenos Aires">Buenos Aires</SelectItem>
+  <SelectItem value="Catamarca">Catamarca</SelectItem>
+  <SelectItem value="Chaco">Chaco</SelectItem>
+  <SelectItem value="Chubut">Chubut</SelectItem>
+  <SelectItem value="Corrientes">Corrientes</SelectItem>
+  <SelectItem value="Cordoba">Córdoba</SelectItem>
+  <SelectItem value="Entre Rios">Entre Ríos</SelectItem>
+  <SelectItem value="Formosa">Formosa</SelectItem>
+  <SelectItem value="Jujuy">Jujuy</SelectItem>
+  <SelectItem value="La pampa">La Pampa</SelectItem>
+  <SelectItem value="La rioja">La Rioja</SelectItem>
+  <SelectItem value="Mendoza">Mendoza</SelectItem>
+  <SelectItem value="Misiones">Misiones</SelectItem>
+  <SelectItem value="Neuquen">Neuquén</SelectItem>
+  <SelectItem value="Rio negro">Río Negro</SelectItem>
+  <SelectItem value="San Juan">San Juan</SelectItem>
+  <SelectItem value="San Luis">San Luis</SelectItem>
+  <SelectItem value="Salta">Salta</SelectItem>
+  <SelectItem value="Santa Cruz">Santa Cruz</SelectItem>
+  <SelectItem value="Santa Fe">Santa Fe</SelectItem>
+  <SelectItem value="Santiago del estero">Santiago del Estero</SelectItem>
+  <SelectItem value="Tierra del fuego">Tierra del Fuego</SelectItem>
+  <SelectItem value="Tucuman">Tucumán</SelectItem>
 </SelectContent>
 
           </Select>
@@ -117,22 +133,10 @@ export default function ProductPricingCalculator({
       
        
         <div className="space-y-6">
-        <div className="calculator-section space-y-4">
-          <label className="block text-lg font-medium">Rubro</label>
-          <p className="space-y-2 text-sm text-gray-500">
-            Selecciona el rubro para saber la alícuota de IIBB (solo en caso de estar inscripto)
-          </p>
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="w-full space-y-2 border-gray-300">
-              <SelectValue placeholder="Buenos Aires" />
-            </SelectTrigger>
-            <SelectContent>
-             
-              <SelectItem value="Comercio">Comercio</SelectItem>
-              <SelectItem value="Servicios">Servicios</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+          {/* Toggle para activar/desactivar el costo de monotributo */}
+          
+
+        
       
         <div className="calculator-section">
         <div className="space-y-2">
@@ -200,50 +204,48 @@ export default function ProductPricingCalculator({
             </div>
 
             {/* Category */}
-            <div className="calculator-section">
-            <div className="space-y-2">
+           
             
-              <label className="block text-lg font-medium">Rubro</label>
-              <p className="text-sm text-gray-500">
-                Selecciona tu actividad para saber la alícuota (En esta fase no están todas las actividades)
-              </p>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-full border-gray-300">
-                  <SelectValue placeholder="Buenos Aires" />
-                </SelectTrigger>
-                <SelectContent>
-                  
-                  <SelectItem value="Comercio">Comercio</SelectItem>
-                  <SelectItem value="Servicios">Servicios</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            </div>
 
             {/* Monotributo Category */}
             <div className="space-y-2">
-            <div className="calculator-section space-y-2">
-              <label className="block text-lg font-medium">Categoría monotributo</label>
-              <p className="text-sm text-gray-500">
-                El valor final de la categoría será dividido en 30 días para ser sumado al costo que ingresen
-              </p>
-              <Select value={monotributoCategory} onValueChange={setMonotributoCategory}>
-                <SelectTrigger className="w-full border-gray-300">
-                  <SelectValue placeholder="A" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="A">A</SelectItem>
-                  <SelectItem value="B">B</SelectItem>
-                  <SelectItem value="C">C</SelectItem>
-                  <SelectItem value="D">D</SelectItem>
-                  <SelectItem value="E">E</SelectItem>
-                  <SelectItem value="F">F</SelectItem>
-                  <SelectItem value="G">G</SelectItem>
-                  <SelectItem value="H">H</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+  <div className="calculator-section space-y-2">
+    <div className="flex justify-between items-center">
+      <label className="block text-lg font-medium">Categoría monotributo</label>
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={monotributoActivo}
+          onChange={(e) => setMonotributoActivo(e.target.checked)}
+          className="w-4 h-4"
+        />
+        <span className="text-sm text-gray-600">Incluir en el cálculo</span>
+      </div>
+    </div>
+    <label className="block text-lg font-medium"></label>
+<p className="text-sm text-gray-500">
+  El valor final de la categoría será dividido en 30 días para ser sumado al costo que ingresen
+</p>
+    <Select value={monotributoCategory} onValueChange={setMonotributoCategory}>
+      <SelectTrigger className="w-full border-gray-300">
+        <SelectValue placeholder="A" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="A">A</SelectItem>
+        <SelectItem value="B">B</SelectItem>
+        <SelectItem value="C">C</SelectItem>
+        <SelectItem value="D">D</SelectItem>
+        <SelectItem value="E">E</SelectItem>
+        <SelectItem value="F">F</SelectItem>
+        <SelectItem value="G">G</SelectItem>
+        <SelectItem value="H">H</SelectItem>
+        <SelectItem value="I">I</SelectItem>
+        <SelectItem value="J">J</SelectItem>
+        <SelectItem value="K">K</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+</div>
           </div>
 
           {/* Right Column */}
